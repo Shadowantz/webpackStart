@@ -1,12 +1,23 @@
 module.exports = {
-	entry: "./script/*.js",
+	entry: "./script/main.js",
 	output: {
-		path: 'app/js',
+		path: "app/js",
 		filename: "script.js"
 	},
 	module: {
 		loaders: [
-			{ test: /\.css$/, loader: "style!css" }
+			{
+				test: /\.js$/,
+				exclude: /(node_modules|bower_components)/,
+				loader: "babel-loader",
+				query: {
+					presets: ['es2015']
+				}
+			},
+			{
+				test: /\.scss/,
+				loaders: ["style", "css", "sass"]
+			}
 		]
 	}
 };
